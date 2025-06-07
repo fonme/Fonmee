@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nos Projets en Cours</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .fade-in {
+      animation: fadeInUp 0.4s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-white to-slate-100 min-h-screen p-6">
+  <header class="flex justify-between items-center mb-6">
+    <a href="index.html" class="flex items-center gap-2 text-blue-600">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h1 class="text-3xl font-bold">Nos Projets en Cours</h1>
+    </a>
+    <button onclick="history.back()" class="border px-4 py-2 rounded hover:bg-gray-100">Retour à l’accueil</button>
+  </header>
+
+  <p class="text-gray-600 mb-4 italic">"Chaque projet est une pierre vers un avenir meilleur."</p>
+
+  <div class="flex flex-wrap gap-2 mb-6 items-center">
+    <div class="flex items-center gap-2">
+      <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1117 9a7.5 7.5 0 01-.35 7.65z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <input placeholder="Recherche..." class="border px-2 py-1 rounded w-48" />
+    </div>
+    <button class="bg-gray-200 px-4 py-2 rounded flex items-center gap-1 hover:bg-gray-300">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 4a1 1 0 000 2h18a1 1 0 100-2H3zm2 7a1 1 0 000 2h14a1 1 0 100-2H5zm4 7a1 1 0 000 2h6a1 1 0 100-2H9z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Filtres
+    </button>
+  </div>
+
+  <div id="projectList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+  <!-- Admin Section -->
+  <div id="adminSection" class="mt-12 p-6 border rounded-xl bg-white shadow-sm hidden">
+    <h3 class="text-2xl font-bold mb-4">🖊️ Ajouter un projet</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input type="text" id="title" placeholder="Titre" class="border px-3 py-2 rounded" />
+      <input type="date" id="date" class="border px-3 py-2 rounded" />
+      <textarea id="description" placeholder="Description" class="border px-3 py-2 rounded col-span-2"></textarea>
+      <input type="number" id="progress" placeholder="Avancement (%)" class="border px-3 py-2 rounded" />
+      <input type="file" id="image" accept="image/*" class="border px-3 py-2 rounded" />
+    </div>
+    <img id="preview" class="mt-4 w-64 rounded-lg hidden" />
+    <button onclick="addProject()" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Ajouter</button>
+  </div>
+
+  <script>
+    const isAdmin = true;
+    const projects = [
+      {
+        title: "Projet Alpha",
+        date: "2025-04-12",
+        description: "Installation de panneaux solaires dans la région nord.",
+        progress: 75,
+        image: null,
+      },
+      {
+        title: "Projet Bêta",
+        date: "2025-05-01",
+        description: "Programme de formation pour les jeunes entrepreneurs.",
+        progress: 40,
+        image: null,
+      },
+    ];
+
+    function renderProjects() {
+      const container = document.getElementById("projectList");
+      container.innerHTML = "";
+      projects.forEach((proj) => {
+        const card = document.createElement("div");
+        card.className = "bg-white p-4 rounded shadow-md space-y-3 fade-in";
+        card.innerHTML = `
+          <h2 class="text-xl font-semibold">📌 ${proj.title}</h2>
+          <p class="text-sm text-gray-500">🗓️ ${proj.date}</p>
+          <p class="text-gray-700">📂 ${proj.description}</p>
+          ${proj.image ? `<img src="${proj.image}" class="w-full h-40 object-cover rounded-md" />` : ""}
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div class="bg-blue-600 h-2 rounded-full" style="width: ${proj.progress}%"></div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function addProject() {
+      const title = document.getElementById("title").value;
+      const date = document.getElementById("date").value;
+      const description = document.getElementById("description").value;
+      const progress = parseInt(document.getElementById("progress").value);
+      const file = document.getElementById("image").files[0];
+
+      if (!title || !date || !description) {
+        alert("Tous les champs sont obligatoires.");
+        return;
+      }
+
+      const newProj = { title, date, description, progress, image: null };
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          newProj.image = e.target.result;
+          projects.push(newProj);
+          renderProjects();
+          clearForm();
+        };
+        reader.readAsDataURL(file);
+      } else {
+        projects.push(newProj);
+        renderProjects();
+        clearForm();
+      }
+    }
+
+    function clearForm() {
+      document.getElementById("title").value = "";
+      document.getElementById("date").value = "";
+      document.getElementById("description").value = "";
+      document.getElementById("progress").value = "";
+      document.getElementById("image").value = "";
+      document.getElementById("preview").classList.add("hidden");
+    }
+
+    // Affichage admin
+    if (isAdmin) {
+      document.getElementById("adminSection").classList.remove("hidden");
+    }
+
+    // Preview image
+    document.getElementById("image").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      const preview = document.getElementById("preview");
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.classList.remove("hidden");
+      } else {
+        preview.classList.add("hidden");
+      }
+    });
+
+    renderProjects();
+  </script>
+</body>
+</html>

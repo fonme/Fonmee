@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contactez-nous - FONME</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('IMG-20241130-WA0003 - Copie (1).jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  .overlay {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.25); /* fond transparent léger */
+    min-height: 100vh;
+    padding: 40px 20px;
+    position: relative;
+  }
+  .container {
+    max-width: 600px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.25); /* fond transparent léger aussi */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #222;
+    backdrop-filter: blur(5px);
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #222;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #222;
+    transition: background-color 0.3s ease;
+  }
+  input:focus, textarea:focus {
+    background-color: rgba(255, 255, 255, 0.6);
+    outline: none;
+    border-color: #007bff;
+  }
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  .infos {
+    text-align: center;
+    margin-top: 40px;
+  }
+  .infos p {
+    margin: 5px 0;
+    color: #333;
+  }
+  .social-icons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  .social-icons a img {
+    width: 40px;
+    transition: transform 0.3s ease;
+  }
+  .social-icons a img:hover {
+    transform: scale(1.2);
+  }
+
+  /* Maison FONME clignotante en haut gauche */
+  .home-framework {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    animation: blink 1.5s infinite;
+    z-index: 1000;
+    user-select: none;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+  }
+  .home-framework img {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+  }
+  .home-framework span {
+    font-size: 20px;
+    color: #007bff;
+  }
+  @keyframes blink {
+    0%, 50%, 100% {opacity: 1;}
+    25%, 75% {opacity: 0.3;}
+  }
+
+  /* Bouton Adhésion en haut droit */
+  .adhesion-link {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0,123,255,0.85);
+    color: white;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 6px 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(0,123,255,0.7);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    z-index: 1000;
+  }
+  .adhesion-link:hover {
+    background-color: #0056b3;
+    box-shadow: 0 0 15px #0056b3;
+  }
+  .adhesion-link img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Maison FONME clignotante -->
+<a href="index.html" class="home-framework" title="Retour à l'accueil">
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Maison" />
+  <span>FONME</span>
+</a>
+
+<!-- Bouton Adhésion -->
+<a href="https://fonme.github.io/Formulaire-de-la-FONME/" target="_blank" rel="noopener" class="adhesion-link" title="Formulaire d'adhésion">
+  <img src="https://cdn-icons-png.flaticon.com/512/2917/2917996.png" alt="Main avec stylo" />
+  <span>Adhésion</span>
+</a>
+
+<div class="overlay">
+  <div class="container">
+    <h1>Contactez-nous</h1>
+    <form>
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" name="nom" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="sujet">Sujet</label>
+      <input type="text" id="sujet" name="sujet" />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Envoyer</button>
+    </form>
+
+    <div class="infos">
+      <h3>Nos coordonnées</h3>
+      <p><strong>Adresse :</strong> Avenue des Héros, Kinshasa, RDC</p>
+      <p><strong>Téléphone :</strong> +243 997 783 486</p>
+      <p><strong>Email :</strong> contact fonmecodgmail.com</p>
+
+      <div class="social-icons">
+        <a href="https://whatsapp.com/channel/0029Vb66qt15a23vjPnLiP1b" target="_blank" rel="noopener">
+          <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp" />
+        </a>
+        <a href="https://facebook.com/groups/723816316066588/" target="_blank" rel="noopener">
+          <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" />
+        </a>
+        <a href="fonmecodgmail.com">
+          <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" />
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Gestion du retour historique navigateur / bouton retour mobile
+  window.addEventListener('popstate', function(event) {
+    history.back();
+  });
+  window.history.pushState({page: 1}, "", "");
+</script>
+</body>
+</html>

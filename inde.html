@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Menu avec liste déroulante</title>
+<style>
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+  /* Fond bleu ciel */
+  body {
+    margin: 0;
+    background-color: #87ceeb; /* bleu ciel */
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Carré blanc centré */
+  .center-box {
+    width: 300px;
+    height: 300px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  /* Conteneur du menu en position fixe */
+  .menu-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  }
+
+  /* Bouton menu bleu foncé */
+  .menu-btn {
+    background-color: #0b3d91; /* bleu foncé */
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .menu-btn:hover {
+    background-color: #092e6f;
+  }
+
+  /* Liste déroulante cachée par défaut */
+  .dropdown {
+    margin-top: 8px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    list-style: none;
+    padding: 0;
+    width: 180px;
+    display: none;
+    flex-direction: column;
+  }
+
+  /* Affichage de la liste quand actif */
+  .dropdown.show {
+    display: flex;
+  }
+
+  /* Style des liens */
+  .dropdown li {
+    border-bottom: 1px solid #ddd;
+  }
+  .dropdown li:last-child {
+    border-bottom: none;
+  }
+
+  .dropdown li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #0b3d91;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.3s;
+  }
+  .dropdown li a:hover {
+    background-color: #e6f0ff;
+  }
+
+  /* Icônes fontawesome */
+  .dropdown li a i {
+    width: 18px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="menu-container">
+  <button class="menu-btn" id="menuBtn">
+    <i class="fa fa-bars"></i> Menu
+  </button>
+  <ul class="dropdown" id="dropdownMenu">
+    <li><a href="#"><i class="fa fa-house"></i> Accueil</a></li>
+    <li><a href="#"><i class="fa fa-folder-open"></i> Assignent / Projet</a></li>
+    <li><a href="#"><i class="fa fa-newspaper"></i> À la une</a></li>
+    <li><a href="#"><i class="fa fa-hand-holding-dollar"></i> Faire un don</a></li>
+    <li><a href="#"><i class="fa fa-user"></i> Biographie</a></li>
+    <li><a href="#"><i class="fa fa-pen-to-square"></i> Inscription</a></li>
+    <li><a href="#"><i class="fa fa-info-circle"></i> À propos</a></li>
+  </ul>
+</div>
+
+<div class="center-box">
+  Carré Centré
+</div>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const dropdown = document.getElementById('dropdownMenu');
+
+  menuBtn.addEventListener('click', () => {
+    dropdown.classList.toggle('show');
+  });
+
+  // Fermer la liste si clic en dehors
+  window.addEventListener('click', e => {
+    if (!menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('show');
+    }
+  });
+</script>
+
+</body>
+</html>

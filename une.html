@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Actualités du jour</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Petite maison clignotante + texte FONME en haut gauche */
+    #home-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+      color: #2c3e50;
+      font-size: 1.1em;
+      user-select: none;
+      z-index: 1000;
+      animation: pulse 2.5s infinite ease-in-out;
+    }
+
+    /* Animation clignotement doux */
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+      }
+    }
+
+    /* Style de la maison SVG */
+    #home-icon {
+      width: 24px;
+      height: 24px;
+      fill: #1abc9c;
+      filter: drop-shadow(0 0 2px #16a085);
+      animation: pulse 2.5s infinite ease-in-out;
+    }
+
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      margin-top: 50px; /* pour laisser la place au home-link */
+    }
+
+    header h1 {
+      margin: 0;
+      transition: all 0.3s ease;
+    }
+
+    header h1:hover {
+      color: #1abc9c;
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .news-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .news-content {
+      padding: 15px;
+    }
+
+    .news-content h3 {
+      margin-top: 0;
+      font-size: 1.2em;
+      color: #2c3e50;
+    }
+
+    .news-content p {
+      margin: 10px 0;
+      font-size: 0.95em;
+      color: #333;
+    }
+
+    .news-date {
+      font-size: 0.8em;
+      color: #888;
+    }
+
+    .share-icons {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .share-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      background-color: #f1f1f1;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .share-icons a:hover {
+      background-color: #d1d1d1;
+      transform: scale(1.15);
+    }
+
+    .share-icons img {
+      width: 18px;
+      height: 18px;
+    }
+
+    #admin-form {
+      display: none;
+      background: #ecf0f1;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+
+    #admin-form h2 {
+      margin-top: 0;
+    }
+
+    #admin-form input,
+    #admin-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    #admin-form button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      font-size: 1em;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #admin-form button:hover {
+      background-color: #2980b9;
+    }
+
+    @media (max-width: 600px) {
+      .news-card img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Home link -->
+  <a href="index.html" id="home-link" title="Page d'accueil">
+    <svg id="home-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path d="M32 12L12 32h8v20h12V40h8v12h12V32h8z" />
+    </svg>
+    FONME
+  </a>
+
+  <header>
+    <h1>📰 Actualités du jour</h1>
+  </header>
+
+  <div class="container">
+
+    <!-- Zone admin -->
+    <div id="admin-form">
+      <h2>Publier une actualité</h2>
+      <input type="text" id="titre" placeholder="Titre de l'actualité" required />
+      <input type="text" id="auteur" placeholder="Nom de l’auteur" required />
+      <input type="text" id="image" placeholder="URL de l’image (facultatif)" />
+      <textarea id="contenu" rows="4" placeholder="Contenu de l'actualité" required></textarea>
+      <button onclick="ajouterActualite()">Publier</button>
+    </div>
+
+    <!-- Affichage des actualités -->
+    <div class="news-grid" id="liste-actualites">
+      <!-- Les cartes s’ajouteront ici -->
+    </div>
+
+  </div>
+
+  <script>
+    // ✅ Changer à false si tu veux masquer l'interface admin
+    const estAdmin = true;
+
+    if (estAdmin) {
+      document.getElementById("admin-form").style.display = "block";
+    }
+
+    function ajouterActualite() {
+      const titre = document.getElementById("titre").value.trim();
+      const auteur = document.getElementById("auteur").value.trim();
+      const image = document.getElementById("image").value.trim() || "https://via.placeholder.com/800x400?text=Actualité";
+      const contenu = document.getElementById("contenu").value.trim();
+
+      if (!titre || !contenu || !auteur) {
+        alert("Tous les champs sauf l’image sont obligatoires.");
+        return;
+      }
+
+      const date = new Date().toLocaleString('fr-FR');
+
+      const carte = document.createElement("div");
+      carte.className = "news-card";
+      const textePartage = encodeURIComponent(`${titre} - ${contenu}`);
+      const whatsapp = `https://wa.me/?text=${textePartage}`;
+      const facebook = `https://www.facebook.com/sharer/sharer.php?u=https://exemple.com&quote=${textePartage}`;
+
+      carte.innerHTML = `
+        <img src="${image}" alt="Image actualité" />
+        <div class="news-content">
+          <h3>${titre}</h3>
+          <p>${contenu}</p>
+          <p class="news-date">Publié par ${auteur} le ${date}</p>
+          <div class="share-icons">
+            <a href="${whatsapp}" target="_blank" title="Partager sur WhatsApp" rel="noopener noreferrer">
+              <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+            </a>
+            <a href="${facebook}" target="_blank" title="Partager sur Facebook" rel="noopener noreferrer">
+              <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+            </a>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("liste-actualites").prepend(carte);
+
+      // Réinitialiser le formulaire
+      document.getElementById("titre").value = "";
+      document.getElementById("auteur").value = "";
+      document.getElementById("image").value = "";
+      document.getElementById("contenu").value = "";
+    }
+
+    // Gestion du bouton retour / geste "retour"
+    window.addEventListener('popstate', (event) => {
+      history.back();
+    });
+
+    window.addEventListener('load', () => {
+      history.pushState({page: 'actualites'}, '', location.href);
+    });
+  </script>
+
+</body>
+</html>
