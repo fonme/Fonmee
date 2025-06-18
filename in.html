@@ -34,6 +34,7 @@
 
     nav ul li {
       margin: 0 15px;
+      position: relative;
     }
 
     nav ul li a {
@@ -42,11 +43,45 @@
       font-weight: bold;
       padding: 8px 12px;
       transition: background-color 0.3s;
+      display: block;
     }
 
     nav ul li a:hover {
       background-color: #007BFF;
       border-radius: 4px;
+    }
+
+    .has-submenu .submenu {
+      display: none;
+      position: absolute;
+      background-color: #001F3F;
+      top: 100%;
+      left: 0;
+      min-width: 160px;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 4px;
+    }
+
+    .has-submenu:hover .submenu {
+      display: block;
+    }
+
+    .submenu li {
+      display: block;
+      margin: 0;
+    }
+
+    .submenu li a {
+      display: block;
+      padding: 10px 15px;
+      color: #fff;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .submenu li a:hover {
+      background-color: #007BFF;
     }
 
     /* CENTRAGE VIDÉO */
@@ -220,7 +255,14 @@
   <nav>
     <ul>
       <li><a href="#">Accueil</a></li>
-      <li><a href="#">Nos actions</a></li>
+      <li class="has-submenu">
+        <a href="#">Nos actions</a>
+        <ul class="submenu">
+          <li><a href="#">Éducation</a></li>
+          <li><a href="#">Santé</a></li>
+          <li><a href="#">Agriculture</a></li>
+        </ul>
+      </li>
       <li><a href="#">Galerie</a></li>
       <li><a href="#">Nous contacter</a></li>
     </ul>
