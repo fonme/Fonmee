@@ -12,6 +12,7 @@
       font-family: Arial, sans-serif;
       color: #333;
       background-color: #fff;
+      scroll-behavior: smooth;
     }
 
     nav {
@@ -213,7 +214,7 @@
     .image-wrapper {
       position: relative;
       width: 100%;
-      padding-top: 75%; /* 4:3 aspect ratio */
+      padding-top: 75%;
       overflow: hidden;
       border-radius: 8px;
     }
@@ -231,9 +232,33 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-300%); }
     }
+
+    .ancre-section {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f4f4f4;
+      border-left: 5px solid #007BFF;
+      border-radius: 8px;
+    }
+
+    .ancre-section h3 {
+      margin-top: 0;
+      color: #001F3F;
+    }
+
+    .ancre-section p {
+      margin-bottom: 10px;
+    }
+
+    .ancre-section a {
+      text-decoration: none;
+      color: #007BFF;
+      font-size: 0.9em;
+    }
   </style>
 </head>
-<body>
+<body id="top">
 
   <nav>
     <ul>
@@ -287,13 +312,42 @@
     </div>
   </section>
 
-  <!-- Sections d'ancrage pour chaque image -->
-  <div id="finalites"></div>
-  <div id="katulo"></div>
-  <div id="katana"></div>
-  <div id="merite"></div>
-  <div id="humanitaire"></div>
-  <div id="fonme"></div>
+  <!-- Sections détaillées -->
+  <div id="finalites" class="ancre-section">
+    <h3>Assistance aux finalités</h3>
+    <p>La fondation intervient pour renforcer la réalisation des objectifs de développement à travers ses actions sur le terrain.</p>
+    <a href="#top">↑ Retour en haut</a>
+  </div>
+
+  <div id="katulo" class="ancre-section">
+    <h3>Journée de Katulo Toussain</h3>
+    <p>Un événement commémoratif a été organisé en hommage à Katulo Toussain, marquant un moment fort de reconnaissance.</p>
+    <a href="#top">↑ Retour en haut</a>
+  </div>
+
+  <div id="katana" class="ancre-section">
+    <h3>Climat de guerre à Katana</h3>
+    <p>Des tensions préoccupantes à Katana ont conduit la fondation à entreprendre des actions humanitaires dans la zone affectée.</p>
+    <a href="#top">↑ Retour en haut</a>
+  </div>
+
+  <div id="merite" class="ancre-section">
+    <h3>Mérite de la fondatrice</h3>
+    <p>Un prix d’honneur a été décerné à la fondatrice pour son engagement exceptionnel en faveur des populations vulnérables.</p>
+    <a href="#top">↑ Retour en haut</a>
+  </div>
+
+  <div id="humanitaire" class="ancre-section">
+    <h3>Oeuvres humanitaires</h3>
+    <p>La fondation œuvre chaque jour pour offrir assistance et espoir aux communautés marginalisées du pays.</p>
+    <a href="#top">↑ Retour en haut</a>
+  </div>
+
+  <div id="fonme" class="ancre-section">
+    <h3>Mission Fonme</h3>
+    <p>La mission Fonme a été lancée pour promouvoir l’accès à la formation, aux soins et à l’autonomisation durable.</p>
+    <a href="#top">↑ Retour en haut</a>
+  </div>
 
 </body>
 </html>
