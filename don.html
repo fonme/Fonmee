@@ -1,76 +1,96 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Faire un Don - FONME</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f0f8ff;
-      padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #e0f7fa, #f0f8ff);
+      color: #333;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
 
     .header {
       display: flex;
+      justify-content: flex-start;
       align-items: center;
       margin-bottom: 20px;
     }
 
     .fonme-button {
+      background-color: #00bfff;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
       display: flex;
       align-items: center;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      animation: blink 1s infinite;
+      box-shadow: 0 4px 10px rgba(0,191,255,0.3);
+      transition: background 0.3s;
+    }
+
+    .fonme-button:hover {
+      background-color: #009acd;
     }
 
     .fonme-button span {
       margin-left: 8px;
     }
 
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0.4; }
+    h2 {
+      margin-top: 0;
+      color: #0077b6;
     }
 
-    form {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    p {
+      font-size: 16px;
     }
 
     label {
-      display: block;
-      margin-top: 15px;
       font-weight: bold;
+      display: block;
+      margin-top: 20px;
     }
 
     input, textarea {
       width: 100%;
-      padding: 10px;
-      margin-top: 5px;
+      padding: 12px;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
+      border-radius: 8px;
+      margin-top: 8px;
+      font-size: 15px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #0077b6;
+      outline: none;
     }
 
     button[type="submit"] {
-      margin-top: 20px;
+      margin-top: 25px;
       background-color: #28a745;
       color: white;
       border: none;
-      padding: 12px 20px;
-      border-radius: 5px;
+      padding: 14px 22px;
       font-size: 16px;
+      border-radius: 8px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
 
     button[type="submit"]:hover {
@@ -80,48 +100,70 @@
     #confirmation {
       display: none;
       margin-top: 20px;
-      color: green;
+      color: #155724;
+      background-color: #d4edda;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #c3e6cb;
       font-weight: bold;
     }
 
     .back-link {
-      margin-top: 30px;
       display: block;
+      margin-top: 30px;
       text-align: center;
+      color: #0077b6;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .back-link:hover {
       text-decoration: underline;
-      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      .fonme-button {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <a href="index.html" class="fonme-button">
-      🏠 <span>FONME</span>
-    </a>
+  <div class="container">
+    <div class="header">
+      <a href="index.html" class="fonme-button">
+        🏠 <span>FONME</span>
+      </a>
+    </div>
+
+    <h2>Faire un Don ou Envoyer de l'Aide</h2>
+    <p>Remplissez ce formulaire pour nous contacter. Chaque geste compte 💖</p>
+
+    <form id="don-form" action="https://formspree.io/f/xyzabcd" method="POST">
+      <label for="nom">Nom complet</label>
+      <input type="text" id="nom" name="nom" placeholder="Entrez votre nom" required>
+
+      <label for="email">Adresse email</label>
+      <input type="email" id="email" name="email" placeholder="exemple@domaine.com" required>
+
+      <label for="message">Message / Détail de l’aide</label>
+      <textarea id="message" name="message" rows="5" placeholder="Ex : Je souhaite envoyer un don via..."></textarea>
+
+      <button type="submit">📩 Envoyer</button>
+    </form>
+
+    <div id="confirmation">
+      ✅ Merci ! Votre message a bien été envoyé à la Fondation NME.
+    </div>
+
+    <a href="javascript:history.back()" class="back-link">⬅️ Retour à la page précédente</a>
   </div>
-
-  <h2>Faire un Don ou Envoyer de l'Aide</h2>
-  <p>Remplissez ce formulaire pour nous envoyer un message ou nous contacter pour toute aide/donation. Nous vous remercions d’avance pour votre générosité 💖</p>
-
-  <form id="don-form" action="https://formspree.io/f/xyzabcd" method="POST">
-    <label for="nom">Votre nom</label>
-    <input type="text" id="nom" name="nom" placeholder="Entrez votre nom" required>
-
-    <label for="email">Votre email</label>
-    <input type="email" id="email" name="email" placeholder="exemple@domaine.com" required>
-
-    <label for="message">Message ou détails de votre aide</label>
-    <textarea id="message" name="message" rows="4" placeholder="Ex : Je souhaite envoyer un don via compte bancaire..."></textarea>
-
-    <button type="submit">Envoyer le message</button>
-  </form>
-
-  <div id="confirmation">
-    ✅ Merci ! Votre message a bien été envoyé à la Fondation NME.
-  </div>
-
-  <a href="javascript:history.back()" class="back-link">⬅️ Revenir à la page précédente</a>
 
   <script>
     const form = document.getElementById('don-form');
@@ -142,10 +184,10 @@
           form.reset();
           confirmation.style.display = 'block';
         } else {
-          alert("Une erreur s'est produite. Veuillez réessayer.");
+          alert("Une erreur s’est produite. Veuillez réessayer.");
         }
       } catch (error) {
-        alert("Erreur réseau. Vérifiez votre connexion.");
+        alert("Erreur réseau. Veuillez vérifier votre connexion.");
       }
     });
   </script>
