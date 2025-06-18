@@ -9,16 +9,52 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background: linear-gradient(180deg, #001F3F 0%, #7FDBFF 50%, #001F3F 100%);
-      background-image:
-        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
-      background-size: 20px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       font-family: Arial, sans-serif;
+      color: #333;
+      background-color: #fff;
+    }
+
+    /* MENU DÉROULANT */
+    nav {
+      background-color: #001F3F;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav ul {
+      list-style-type: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
       color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: #007BFF;
+      border-radius: 4px;
+    }
+
+    /* CENTRAGE VIDÉO */
+    .video-mask-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 0;
     }
 
     .video-mask {
@@ -36,16 +72,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 5vmin;
     }
 
     .video-mask video {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      mix-blend-mode: multiply;
+      filter: brightness(1.1);
     }
 
-    /* Bouton coeur bleu animé */
+    /* BOUTON COEUR */
     .heart-button {
       position: fixed;
       top: 20px;
@@ -54,9 +91,8 @@
       height: 50px;
       background-color: #007BFF;
       mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 32 29.6" xmlns="http://www.w3.org/2000/svg"><path d="M23.6,0C21,0,18.6,1.3,16.9,3.3C15.1,1.3,12.7,0,10.1,0C4.6,0,0,4.6,0,10.1c0,8.8,16,19.5,16,19.5s16-10.7,16-19.5C32,4.6,27.4,0,23.6,0z" /></svg>');
-      -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 32 29.6" xmlns="http://www.w3.org/2000/svg"><path d="M23.6,0C21,0,18.6,1.3,16.9,3.3C15.1,1.3,12.7,0,10.1,0C4.6,0,0,4.6,0,10.1c0,8.8,16,19.5,16,19.5s16-10.7,16-19.5C32,4.6,27.4,0,23.6,0z" /></svg>');
-      mask-size: contain;
       -webkit-mask-size: contain;
+      mask-size: contain;
       mask-repeat: no-repeat;
       -webkit-mask-repeat: no-repeat;
       mask-position: center;
@@ -67,11 +103,6 @@
       outline: none;
       z-index: 100;
       color: transparent;
-      font-size: 10px;
-      font-weight: bold;
-      line-height: 50px;
-      text-align: center;
-      user-select: none;
     }
 
     .heart-button::after {
@@ -104,7 +135,6 @@
       100% { box-shadow: 0 0 0px #00f; }
     }
 
-    /* Zone texte blanche sous la vidéo */
     .info-text {
       width: 90vw;
       max-width: 960px;
@@ -119,7 +149,6 @@
       text-align: justify;
     }
 
-    /* Section À la Une */
     .a-la-une {
       max-width: 100vw;
       padding: 20px 10px;
@@ -136,7 +165,6 @@
       font-size: 1.6rem;
     }
 
-    /* Carrousel */
     .carousel-container {
       width: 100%;
       max-width: 960px;
@@ -148,9 +176,9 @@
 
     .carousel-track {
       display: flex;
-      gap: 10px; /* pour un espacement régulier */
+      gap: 10px;
       animation: slide-left 36s linear infinite;
-}
+    }
 
     .carousel-item {
       flex: 0 0 33.3333%;
@@ -160,10 +188,10 @@
     }
 
     .carousel-item img {
-  width: 100%;
-  height: auto; /* pour conserver le ratio naturel de l'image */
-  object-fit: contain; /* alternative à cover */
-}
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
 
     .carousel-item p {
       margin-top: 8px;
@@ -172,44 +200,46 @@
     }
 
     @keyframes slide-left {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-300%);
-      }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-300%); }
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
-      .carousel-item img {
-        height: 120px;
-      }
+      .carousel-item img { height: 120px; }
     }
+
     @media (max-width: 600px) {
-      .carousel-item img {
-        height: 100px;
-      }
-      .carousel-item p {
-        font-size: 12px;
-      }
+      .carousel-item img { height: 100px; }
+      .carousel-item p { font-size: 12px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Bouton "faire un don" -->
-  <a href="index.html" class="heart-button" title="Reour 💙"></a>
+  <!-- Menu navigation -->
+  <nav>
+    <ul>
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#">Nos actions</a></li>
+      <li><a href="#">Galerie</a></li>
+      <li><a href="#">Nous contacter</a></li>
+    </ul>
+  </nav>
 
-  <!-- Vidéo masquée en forme RDC -->
-  <div class="video-mask">
-    <video autoplay muted loop playsinline>
-      <source src="2025-06-05-095617410.mp4" type="video/mp4" />
-      Votre navigateur ne supporte pas la vidéo HTML5.
-    </video>
+  <!-- Bouton faire un don -->
+  <a href="index.html" class="heart-button" title="Retour 💙"></a>
+
+  <!-- Vidéo au centre -->
+  <div class="video-mask-container">
+    <div class="video-mask">
+      <video autoplay muted loop playsinline>
+        <source src="2025-06-05-095617410.mp4" type="video/mp4" />
+        Votre navigateur ne supporte pas la vidéo HTML5.
+      </video>
+    </div>
   </div>
 
-  <!-- Zone texte blanche -->
+  <!-- Texte explicatif -->
   <div class="info-text">
     La Fondation NSIMIRE MUZIGIRWA Elodie est une association sans but lucratif de droit congolais, œuvrant dans le domaine de l'éducation, santé, sécurité alimentaire, agriculture pêche et élevage, sécurité de revenu pour les personnes vulnérables, promotion de l'entrepreneuriat et genre. L'encadrement de jeunes, femmes et enfants vulnérables (enfants orphelins et enfants non accompagnés).
   </div>
@@ -219,20 +249,21 @@
     <h2>À la Une</h2>
     <div class="carousel-container">
       <div class="carousel-track">
-        <div class="carousel-item"><img src="IMG-20250602-WA0054.jpg" alt="Un mot pour l'education congolaise"><p>L'encouragment et l'assistance aux finalites</p></div>
-        <div class="carousel-item"><img src="IMG-20250522-WA0029.jpg" alt="Titre 2"><p>La journée motuaire de Katulo Toussain</p></div>
-        <div class="carousel-item"><img src="IMG-20250605-WA0068.jpg" alt="Titre 3"><p>un climat de guerre a katana</p></div>
-        <div class="carousel-item"><img src="Mérite NME_n.jpg" alt="Titre 4"><p>Celebration du merita de La fondatrice</p></div>
-        <div class="carousel-item"><img src="IMG-20250505-WA0045.jpg" alt="Titre 5"><p>Oeuvres humanitaires</p></div>
-        <div class="carousel-item"><img src="IMG-20241130-WA0018.jpg" alt="Titre 6"><p>Mission de service de l'esuipe Fonme</p></div>
-        <div class="carousel-item"><img src="1749298883383.jpg" alt="Titre 7"><p>l'assistance de personnes du 3eme age</p></div>
-        <div class="carousel-item"><img src="1749299013940.jpg" alt="Titre 8"><p>Entretien</p></div>
-        <div class="carousel-item"><img src="1749298964218.jpg" alt="Titre 9"><p>Une rencontre familiale</p></div>
-        <div class="carousel-item"><img src="1749298795427.jpg" alt="Titre 10"><p>l'accompagnement des entrepreneurs</p></div>
-        <div class="carousel-item"><img src="Essaie.jpg" alt="Titre 11"><p>Une formation adequate</p></div>
-        <div class="carousel-item"><img src="IMG-20250607-WA0001.jpg" alt="Titre 12"><p>Vive la pentecote</p></div>
+        <div class="carousel-item"><img src="IMG-20250602-WA0054.jpg"><p>L'encouragment et l'assistance aux finalites</p></div>
+        <div class="carousel-item"><img src="IMG-20250522-WA0029.jpg"><p>La journée motuaire de Katulo Toussain</p></div>
+        <div class="carousel-item"><img src="IMG-20250605-WA0068.jpg"><p>un climat de guerre a katana</p></div>
+        <div class="carousel-item"><img src="Mérite NME_n.jpg"><p>Celebration du merita de La fondatrice</p></div>
+        <div class="carousel-item"><img src="IMG-20250505-WA0045.jpg"><p>Oeuvres humanitaires</p></div>
+        <div class="carousel-item"><img src="IMG-20241130-WA0018.jpg"><p>Mission de service de l'équipe Fonme</p></div>
+        <div class="carousel-item"><img src="1749298883383.jpg"><p>l'assistance de personnes du 3eme age</p></div>
+        <div class="carousel-item"><img src="1749299013940.jpg"><p>Entretien</p></div>
+        <div class="carousel-item"><img src="1749298964218.jpg"><p>Une rencontre familiale</p></div>
+        <div class="carousel-item"><img src="1749298795427.jpg"><p>l'accompagnement des entrepreneurs</p></div>
+        <div class="carousel-item"><img src="Essaie.jpg"><p>Une formation adequate</p></div>
+        <div class="carousel-item"><img src="IMG-20250607-WA0001.jpg"><p>Vive la pentecôte</p></div>
       </div>
     </div>
   </section>
+
 </body>
 </html>
