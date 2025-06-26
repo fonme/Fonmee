@@ -1,153 +1,219 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nos Projets en Cours</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignments</title>
   <style>
-    .fade-in {
-      animation: fadeInUp 0.4s ease-out forwards;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f8f8;
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    header img {
+      width: 50px;
+      height: auto;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      color: #004080;
+      margin: 0;
+    }
+
+    h2.section-title {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 20px;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .filters button {
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .filters button:hover {
+      background-color: #002b5c;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 15px;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .card-text {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .card-footer {
+      padding: 10px 15px;
+      display: flex;
+      gap: 10px;
+      border-top: 1px solid #eee;
+    }
+
+    .card-footer a img {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.2s;
+    }
+
+    .card-footer a img:hover {
+      transform: scale(1.2);
+    }
+
+    .pagination {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .pagination button {
+      margin: 0 5px;
+      padding: 6px 12px;
+      border: none;
+      background-color: #004080;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .pagination button:hover {
+      background-color: #002b5c;
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-white to-slate-100 min-h-screen p-6">
-  <header class="flex justify-between items-center mb-6">
-    <a href="index.html" class="flex items-center gap-2 text-blue-600">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <h1 class="text-3xl font-bold">Nos Projets en Cours</h1>
-    </a>
-    <button onclick="history.back()" class="border px-4 py-2 rounded hover:bg-gray-100">Retour à l’accueil</button>
+<body>
+
+  <header>
+    <img src="LIEN_VERS_TON_LOGO.png" alt="Logo FONME">
+    <h1>FONME - Nos Réalisations</h1>
   </header>
 
-  <p class="text-gray-600 mb-4 italic">"Chaque projet est une pierre vers un avenir meilleur."</p>
+  <h2 class="section-title">Nos Réalisations</h2>
 
-  <div class="flex flex-wrap gap-2 mb-6 items-center">
-    <div class="flex items-center gap-2">
-      <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1117 9a7.5 7.5 0 01-.35 7.65z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <input placeholder="Recherche..." class="border px-2 py-1 rounded w-48" />
-    </div>
-    <button class="bg-gray-200 px-4 py-2 rounded flex items-center gap-1 hover:bg-gray-300">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 4a1 1 0 000 2h18a1 1 0 100-2H3zm2 7a1 1 0 000 2h14a1 1 0 100-2H5zm4 7a1 1 0 000 2h6a1 1 0 100-2H9z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Filtres
-    </button>
+  <div class="filters">
+    <button onclick="filterCards('all')">Toutes</button>
+    <button onclick="filterCards('sante')">Santé</button>
+    <button onclick="filterCards('education')">Éducation</button>
+    <button onclick="filterCards('droits')">Droits</button>
+    <button onclick="filterCards('entrepreneuriat')">Entrepreneuriat</button>
   </div>
 
-  <div id="projectList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-  <!-- Admin Section -->
-  <div id="adminSection" class="mt-12 p-6 border rounded-xl bg-white shadow-sm hidden">
-    <h3 class="text-2xl font-bold mb-4">🖊️ Ajouter un projet</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <input type="text" id="title" placeholder="Titre" class="border px-3 py-2 rounded" />
-      <input type="date" id="date" class="border px-3 py-2 rounded" />
-      <textarea id="description" placeholder="Description" class="border px-3 py-2 rounded col-span-2"></textarea>
-      <input type="number" id="progress" placeholder="Avancement (%)" class="border px-3 py-2 rounded" />
-      <input type="file" id="image" accept="image/*" class="border px-3 py-2 rounded" />
+  <div class="cards-container" id="cards-container">
+    <div class="card" data-category="sante">
+      <img src="image1.jpg" alt="Réalisation 1">
+      <div class="card-body">
+        <div class="card-title">Distribution de kits médicaux</div>
+        <div class="card-text">Des centaines de familles bénéficiaires à Kinshasa, en partenariat avec l'hôpital Saint-Joseph.</div>
+      </div>
+      <div class="card-footer">
+        <a href="https://facebook.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/124/124010.png"></a>
+        <a href="https://wa.me" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/124/124034.png"></a>
+        <a href="https://youtube.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"></a>
+        <a href="https://tiktok.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"></a>
+      </div>
     </div>
-    <img id="preview" class="mt-4 w-64 rounded-lg hidden" />
-    <button onclick="addProject()" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Ajouter</button>
+  </div>
+
+  <div class="pagination">
+    <button onclick="prevPage()">&laquo; Précédent</button>
+    <button onclick="nextPage()">Suivant &raquo;</button>
   </div>
 
   <script>
-    const isAdmin = true;
-    const projects = [
-      {
-        title: "Projet Alpha",
-        date: "2025-04-12",
-        description: "Installation de panneaux solaires dans la région nord.",
-        progress: 75,
-        image: null,
-      },
-      {
-        title: "Projet Bêta",
-        date: "2025-05-01",
-        description: "Programme de formation pour les jeunes entrepreneurs.",
-        progress: 40,
-        image: null,
-      },
-    ];
+    let currentPage = 1;
+    const cardsPerPage = 6;
+    const cards = document.querySelectorAll('.card');
 
-    function renderProjects() {
-      const container = document.getElementById("projectList");
-      container.innerHTML = "";
-      projects.forEach((proj) => {
-        const card = document.createElement("div");
-        card.className = "bg-white p-4 rounded shadow-md space-y-3 fade-in";
-        card.innerHTML = `
-          <h2 class="text-xl font-semibold">📌 ${proj.title}</h2>
-          <p class="text-sm text-gray-500">🗓️ ${proj.date}</p>
-          <p class="text-gray-700">📂 ${proj.description}</p>
-          ${proj.image ? `<img src="${proj.image}" class="w-full h-40 object-cover rounded-md" />` : ""}
-          <div class="w-full bg-gray-200 rounded-full h-2">
-            <div class="bg-blue-600 h-2 rounded-full" style="width: ${proj.progress}%"></div>
-          </div>
-        `;
-        container.appendChild(card);
+    function showPage(page) {
+      const start = (page - 1) * cardsPerPage;
+      const end = start + cardsPerPage;
+      cards.forEach((card, index) => {
+        card.style.display = index >= start && index < end ? 'block' : 'none';
       });
     }
 
-    function addProject() {
-      const title = document.getElementById("title").value;
-      const date = document.getElementById("date").value;
-      const description = document.getElementById("description").value;
-      const progress = parseInt(document.getElementById("progress").value);
-      const file = document.getElementById("image").files[0];
-
-      if (!title || !date || !description) {
-        alert("Tous les champs sont obligatoires.");
-        return;
-      }
-
-      const newProj = { title, date, description, progress, image: null };
-
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          newProj.image = e.target.result;
-          projects.push(newProj);
-          renderProjects();
-          clearForm();
-        };
-        reader.readAsDataURL(file);
-      } else {
-        projects.push(newProj);
-        renderProjects();
-        clearForm();
+    function nextPage() {
+      if ((currentPage * cardsPerPage) < cards.length) {
+        currentPage++;
+        showPage(currentPage);
       }
     }
 
-    function clearForm() {
-      document.getElementById("title").value = "";
-      document.getElementById("date").value = "";
-      document.getElementById("description").value = "";
-      document.getElementById("progress").value = "";
-      document.getElementById("image").value = "";
-      document.getElementById("preview").classList.add("hidden");
-    }
-
-    // Affichage admin
-    if (isAdmin) {
-      document.getElementById("adminSection").classList.remove("hidden");
-    }
-
-    // Preview image
-    document.getElementById("image").addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      const preview = document.getElementById("preview");
-      if (file) {
-        preview.src = URL.createObjectURL(file);
-        preview.classList.remove("hidden");
-      } else {
-        preview.classList.add("hidden");
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
       }
-    });
+    }
 
-    renderProjects();
+    function filterCards(category) {
+      currentPage = 1;
+      cards.forEach(card => {
+        const match = category === 'all' || card.dataset.category === category;
+        card.style.display = match ? 'block' : 'none';
+      });
+    }
+
+    showPage(currentPage);
   </script>
 </body>
 </html>
